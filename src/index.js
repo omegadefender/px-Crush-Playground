@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './css_files/index.css'
 import * as serviceWorker from './serviceWorker'
+
+import './css_files/index.css'
 import Navbar from './components/navbar'
 
 ReactDOM.render(
