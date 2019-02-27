@@ -1,0 +1,27 @@
+form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }
+
+  input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+  }
+
+#analyse {
+    font: 300 30px 'Open Sans', Arial;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: solid 1px #314bfa;
+    padding: 10px;
+    flex: 1;
+    border-right: none;
+    box-sizing: border-box;
+    width: calc(100% - 63px);
+    height: 63px;
+}
