@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Urlbar from './Urlbar'
-import Navbar from './navbar'
+import Urlbar from '../Elements/Urlbar'
+import Navbar from '../Elements/navbar'
 
 class Homepage extends React.Component {
     render() {

@@ -5,15 +5,17 @@ import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import './css_files/index.css'
-import Navbar from './components/navbar'
-import Urlbar from './components/Urlbar'
-import Homepage from './components/homepage'
+import Homepage from './components/Pages/Homepage'
+import Crusher from './components/crusher';
 
 ReactDOM.render((
     <Router>
-        <Route path="/" component={Homepage} />
+        <switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/crusher" component={Crusher} />
+        </switch>
     </Router>
-    ), document.getElementById('navigation')
+    ), document.getElementById('root')
 )
 
 // If you want your app to work offline and load faster, you can change
