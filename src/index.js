@@ -2,18 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as serviceWorker from './serviceWorker'
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './css_files/index.css'
 import Homepage from './components/Pages/Homepage'
-import Crusher from './components/crusher';
+import Crusher from './components/Pages/crusher';
 
 ReactDOM.render((
     <Router>
-        <switch>
+        <div>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/crusher" component={Crusher} />
-        </switch>
+        </div>
     </Router>
     ), document.getElementById('root')
 )

@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Urlbar from '../Elements/Urlbar'
 import Navbar from '../Elements/navbar'
 
