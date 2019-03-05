@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../css_files/imglist.css'
 
 const images = [
     { name: 'African Elephant ', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
@@ -49,6 +50,7 @@ class Imglist extends React.Component {
                        return <li key={index} onClick={() => that.onClick(element)}>{element.name}</li>
                     })}
                 </ul>
+                <img src={that.state.url} alt={that.state.name}></img>
             </div>
         )
     }
