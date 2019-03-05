@@ -33,6 +33,7 @@ class Imglist extends React.Component {
 
         this.onClick = this.onClick.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.widthChange = this.widthChange.bind(this)
     }
 
     onClick(element) {
@@ -47,6 +48,15 @@ class Imglist extends React.Component {
         })
     } 
 
+    widthChange(event) {
+        const newURL = this.state.url + "?" + urlprefix + "width=" + event
+        console.log(event, "this is the event") 
+        this.setState({url: newURL}, () => {
+            console.log(this.state.url, "url updated")
+        })
+        event.preventDefault()
+    }
+
     render() {
 
         var that = this
@@ -59,12 +69,11 @@ class Imglist extends React.Component {
                     })}
                 </ul>                       
                 <img src={that.state.url} alt={that.state.name}></img>
-                <form >
+                <form onSubmit={that.widthChange}>
                     <label>
-                    Width:
                     <input type="text" onChange={that.handleChange} value={that.state.width} />
                     </label>
-                    <input type="submit" value="submit" />
+                    <input type="submit" value="Width" />
                 </form>         
             </div>
         )
