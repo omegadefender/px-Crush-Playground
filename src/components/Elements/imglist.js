@@ -20,20 +20,22 @@ const images = [
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
 
+const urlprefix = "pxc_"
+
 class Imglist extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             url: null,
-            name: null
+            name: null,
+            width: null
         }
 
-        this.onClick = this.onClick.bind(this); // <-- bind early
+        this.onClick = this.onClick.bind(this);
     }
 
     onClick(element) {
-        // setState is async, so your code does not work. to make it works, add your console log in a callback.
         this.setState({url: element.url, name: element.name}, () => {
             console.log(this.state)
          })
@@ -49,8 +51,15 @@ class Imglist extends React.Component {
                     {images.map(function(element, index) { // <-- you can use arrow func, so that you don't need to assign this to that.
                        return <li key={index} onClick={() => that.onClick(element)}>{element.name}</li>
                     })}
-                </ul>
+                </ul>                       
                 <img src={that.state.url} alt={that.state.name}></img>
+                <form id="width-box">
+                    <label>
+                    Width:
+                    <input type="number" name="Width" />
+                    </label>
+                    <input type="submit" value="submit" />
+                </form>         
             </div>
         )
     }

@@ -12,7 +12,7 @@ ReactDOM.render((
     <Router>
         <div>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/crusher" component={Crusher} />
+        <Route path="/crusher" component={Crusher} />
         </div>
     </Router>
     ), document.getElementById('root')
