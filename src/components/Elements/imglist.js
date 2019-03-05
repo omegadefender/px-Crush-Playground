@@ -25,14 +25,14 @@ const urlprefix = "pxc_"
 class Imglist extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
             url: null,
             name: null,
-            width: null
+            width: ''
         }
 
-        this.onClick = this.onClick.bind(this);
+        this.onClick = this.onClick.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     onClick(element) {
@@ -40,6 +40,12 @@ class Imglist extends React.Component {
             console.log(this.state)
          })
     }
+
+    handleChange(event) {
+        this.setState({width: event.target.value}, () => {
+            console.log(this.state)
+        })
+    } 
 
     render() {
 
@@ -53,10 +59,10 @@ class Imglist extends React.Component {
                     })}
                 </ul>                       
                 <img src={that.state.url} alt={that.state.name}></img>
-                <form id="width-box">
+                <form >
                     <label>
                     Width:
-                    <input type="number" name="Width" />
+                    <input type="text" onChange={that.handleChange} value={that.state.width} />
                     </label>
                     <input type="submit" value="submit" />
                 </form>         

@@ -21,9 +21,20 @@ li {
 form {
     position: absolute;
     margin: auto;
-    width: 200px;
-    left: 1000px;
+    width: 160px;
+    left: 1100px;
     right: 0;
     top: 40px;
     bottom: 0;
+    size: 150px;
+}
+
+label {
+    color: white;
+    font-size: small;
+}
+
+input {
+    width: 50px;
+    font-size: small;
 }
