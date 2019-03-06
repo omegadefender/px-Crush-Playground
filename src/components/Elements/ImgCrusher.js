@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../css_files/ImgCrusher.css'
 
+// Look up member variables. Can all of these variables and function be moved into the constructor?
 const images = [
     { name: 'African Elephant ', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
     { name: 'Ape', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
@@ -20,10 +21,20 @@ const images = [
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
 let baseURL = ""
+let imgURL = ""
 const urlprefix = "pxc_"
-let queryString = "?"
-let widthString = "width="
-let height = "height="
+let queryString = ""
+const widthString = "width="
+let widthQS = ""
+const heightString = "height="
+let heightQS = ""
+
+function crusher() { 
+    const uncleanQS = widthQS + heightQS
+    queryString = uncleanQS.slice(0, -1)    
+    imgURL = baseURL + queryString
+    console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
+}
 
 class Imglist extends React.Component {
     constructor(props) {
@@ -42,13 +53,8 @@ class Imglist extends React.Component {
         this.heightSubmit = this.heightSubmit.bind(this)
     }
 
-    crusher(width, height) {
-        console.log(queryString, "to become the function that makes the img url")
-    }
-
-    onPicSelect(element) {
-        queryString = "?"
-        baseURL = element.url
+    onPicSelect(element) {  
+        baseURL = element.url + "?"
         this.setState({url: element.url, name: element.name})
     }
 
@@ -57,13 +63,9 @@ class Imglist extends React.Component {
     } 
 
     widthSubmit(event) {
-        const width = widthString + this.state.width
-        queryString = queryString + urlprefix + width
-        const newURL = baseURL + queryString
-        console.log(queryString, "this is the querystring") 
-        this.setState({url: newURL}, () => {
-            console.log(this.state.url, "URL updated")
-        })
+        widthQS = urlprefix + widthString + this.state.width + "&"
+        crusher()
+        this.setState({url: imgURL})
         event.preventDefault()
     }
 
@@ -72,13 +74,9 @@ class Imglist extends React.Component {
     }
 
     heightSubmit(event) {
-        height = height + this.state.height
-        queryString = queryString + urlprefix + height
-        const newURL = baseURL + queryString
-        console.log(queryString, "this is the query")
-        this.setState({url: newURL }, () => {
-            console.log(this.state.url, "URL update")
-        })
+        heightQS = urlprefix + heightString + this.state.height + "&"
+        crusher()
+        this.setState({url: imgURL })
         event.preventDefault()
     }
 
