@@ -1,20 +1,22 @@
-# H1 PXcrush Playground
+# PXcrush Playground
 
-This is a demo site where you can take an image url and see what happens when you manipulate it with PXcrush.
+This is a demo site where you can manipulate images with sliders and buttons, in order to get the query string.
 
 ## Query String Notes
 
-All query strings can use pxc_ at the start
+See px_job.py in Pixel. That file has the code related to query string construction. 
 
-See param type in Pixel
-px_job.py 
-line 47 for query string params
-line 227 for size param settings
+The beginning of the query string starts with ?
+All query strings must use pxc_ at the start eg. pxc_width=200 
+use & to bind multiple queries together
 
-size
+Line 47 for query string params
+
+Size
+Line 227 for size param settings
 either size=int,int or size=s:float
  
-format 
+Format 
 line 278
 changes format of image
 
@@ -30,7 +32,7 @@ bgtype
 line 328
 
 bgcolor
-line 337https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347
+line 337 https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347
 
 bgalpha
 line 347

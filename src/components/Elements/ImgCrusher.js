@@ -21,6 +21,9 @@ const images = [
 ]
 let baseURL = ""
 const urlprefix = "pxc_"
+let queryString = "?"
+let widthString = "width="
+let height = "height="
 
 class Imglist extends React.Component {
     constructor(props) {
@@ -39,23 +42,25 @@ class Imglist extends React.Component {
         this.heightSubmit = this.heightSubmit.bind(this)
     }
 
+    crusher(width, height) {
+        console.log(queryString, "to become the function that makes the img url")
+    }
+
     onPicSelect(element) {
-        baseURL = element.url + "?"
-        this.setState({url: element.url, name: element.name}, () => {
-            console.log(this.state, "BASE URL =", baseURL)
-         })
+        queryString = "?"
+        baseURL = element.url
+        this.setState({url: element.url, name: element.name})
     }
 
     widthChange(event) {
-        this.setState({width: event.target.value}, () => {
-            console.log(this.state.width, "pixels is the width in state")
-        })
+        this.setState({width: event.target.value})
     } 
 
     widthSubmit(event) {
-        const width = this.state.width
-        const newURL = baseURL + urlprefix + "width=" + width
-        console.log(width, "this is the width const") 
+        const width = widthString + this.state.width
+        queryString = queryString + urlprefix + width
+        const newURL = baseURL + queryString
+        console.log(queryString, "this is the querystring") 
         this.setState({url: newURL}, () => {
             console.log(this.state.url, "URL updated")
         })
@@ -63,15 +68,14 @@ class Imglist extends React.Component {
     }
 
     heightChange(event) {
-        this.setState({height: event.target.value}, () => {
-            console.log(this.state.height, "Height state")
-        })
+        this.setState({height: event.target.value})
     }
 
     heightSubmit(event) {
-        const height = "height=" + this.state.height
-        const newURL = baseURL + urlprefix + height
-        console.log(height, "this is the height const")
+        height = height + this.state.height
+        queryString = queryString + urlprefix + height
+        const newURL = baseURL + queryString
+        console.log(queryString, "this is the query")
         this.setState({url: newURL }, () => {
             console.log(this.state.url, "URL update")
         })
