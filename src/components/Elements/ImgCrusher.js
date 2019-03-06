@@ -58,20 +58,17 @@ class Imglist extends React.Component {
     }
 
     render() {
-
-        var that = this
-
         return (
             <div>
                 <ul>
-                    {images.map(function(element, index) { // <-- you can use arrow func, so that you don't need to assign this to that.
-                       return <li key={index} onClick={() => that.onClick(element)}>{element.name}</li>
+                    {images.map((element, index) => { 
+                      return <li key={index} onClick={() => this.onClick(element)}>{element.name}</li>
                     })}
                 </ul>                       
-                <img src={that.state.url} alt={that.state.name}></img>
-                <form onSubmit={that.widthChange}>
+                <img src={this.state.url} alt={this.state.name}></img>
+                <form onSubmit={this.widthChange}>
                     <label>
-                    <input type="text" onChange={that.handleChange} value={that.state.width} />
+                    <input type="text" onChange={this.handleChange} value={this.state.width} />
                     </label>
                     <input type="submit" value="Width" />
                 </form>         
