@@ -18,13 +18,24 @@ li {
     list-style-type: square;
 }
 
-form {
+#width {
     position: absolute;
     margin: auto;
     width: 160px;
-    left: 1100px;
+    left: 1170px;
     right: 0;
     top: 40px;
+    bottom: 0;
+    size: 150px;
+}
+
+#height {
+    position: absolute;
+    margin: auto;
+    width: 160px;
+    left: 1170px;
+    right: 0;
+    top: 65px;
     bottom: 0;
     size: 150px;
 }

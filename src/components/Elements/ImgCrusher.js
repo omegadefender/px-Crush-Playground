@@ -19,7 +19,7 @@ const images = [
     { name: 'Grasshopper', url: 'https://zw5alevhy0za-stg.pxcrush.net/close-up-grasshopper-hd-wallpaper-59981.jpg' },
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
-let crushedURL = ""
+let baseURL = ""
 const urlprefix = "pxc_"
 
 class Imglist extends React.Component {
@@ -28,33 +28,52 @@ class Imglist extends React.Component {
         this.state = {
             url: null,
             name: null,
-            width: ''
+            width: '',
+            height: ''
         }
 
-        this.onClick = this.onClick.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+        this.onPicSelect = this.onPicSelect.bind(this)
         this.widthChange = this.widthChange.bind(this)
+        this.widthSubmit = this.widthSubmit.bind(this)
+        this.heightChange = this.heightChange.bind(this)
+        this.heightSubmit = this.heightSubmit.bind(this)
     }
 
-    onClick(element) {
-        crushedURL = element.url
+    onPicSelect(element) {
+        baseURL = element.url + "?"
         this.setState({url: element.url, name: element.name}, () => {
-            console.log(this.state, "and crushed URL", crushedURL)
+            console.log(this.state, "BASE URL =", baseURL)
          })
     }
 
-    handleChange(event) {
+    widthChange(event) {
         this.setState({width: event.target.value}, () => {
             console.log(this.state.width, "pixels is the width in state")
         })
     } 
 
-    widthChange(event) {
+    widthSubmit(event) {
         const width = this.state.width
-        const newURL = crushedURL + "?" + urlprefix + "width=" + width
+        const newURL = baseURL + urlprefix + "width=" + width
         console.log(width, "this is the width const") 
         this.setState({url: newURL}, () => {
             console.log(this.state.url, "URL updated")
+        })
+        event.preventDefault()
+    }
+
+    heightChange(event) {
+        this.setState({height: event.target.value}, () => {
+            console.log(this.state.height, "Height state")
+        })
+    }
+
+    heightSubmit(event) {
+        const height = "height=" + this.state.height
+        const newURL = baseURL + urlprefix + height
+        console.log(height, "this is the height const")
+        this.setState({url: newURL }, () => {
+            console.log(this.state.url, "URL update")
         })
         event.preventDefault()
     }
@@ -64,16 +83,22 @@ class Imglist extends React.Component {
             <div>
                 <ul>
                     {images.map((element, index) => { 
-                      return <li key={index} onClick={() => this.onClick(element)}>{element.name}</li>
+                      return <li key={index} onClick={() => this.onPicSelect(element)}>{element.name}</li>
                     })}
                 </ul>                       
                 <img src={this.state.url} alt={this.state.name}></img>
-                <form onSubmit={this.widthChange}>
+                <form onSubmit={this.widthSubmit} id="width">
                     <label>
-                    <input type="text" onChange={this.handleChange} value={this.state.width} />
+                    <input type="text" onChange={this.widthChange} value={this.state.width} />
                     </label>
                     <input type="submit" value="Width" />
-                </form>         
+                </form>
+                <form onSubmit={this.heightSubmit} id="height">
+                    <label>
+                    <input type="text" onChange={this.heightChange} value={this.state.height} />
+                    </label>
+                    <input type="submit" value="Height" />
+                </form>             
             </div>
         )
     }
