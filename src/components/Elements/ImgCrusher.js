@@ -19,6 +19,7 @@ const images = [
     { name: 'Grasshopper', url: 'https://zw5alevhy0za-stg.pxcrush.net/close-up-grasshopper-hd-wallpaper-59981.jpg' },
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
+let crushedURL = ""
 const urlprefix = "pxc_"
 
 class Imglist extends React.Component {
@@ -36,20 +37,21 @@ class Imglist extends React.Component {
     }
 
     onClick(element) {
+        crushedURL = element.url
         this.setState({url: element.url, name: element.name}, () => {
-            console.log(this.state)
+            console.log(this.state, "and crushed URL", crushedURL)
          })
     }
 
     handleChange(event) {
         this.setState({width: event.target.value}, () => {
-            console.log(this.state, event, "State and the event")
+            console.log(this.state.width, "pixels is the width in state")
         })
     } 
 
     widthChange(event) {
         const width = this.state.width
-        const newURL = this.state.url + "?" + urlprefix + "width=" + width
+        const newURL = crushedURL + "?" + urlprefix + "width=" + width
         console.log(width, "this is the width const") 
         this.setState({url: newURL}, () => {
             console.log(this.state.url, "URL updated")
