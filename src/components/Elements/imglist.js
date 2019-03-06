@@ -19,7 +19,6 @@ const images = [
     { name: 'Grasshopper', url: 'https://zw5alevhy0za-stg.pxcrush.net/close-up-grasshopper-hd-wallpaper-59981.jpg' },
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
-
 const urlprefix = "pxc_"
 
 class Imglist extends React.Component {
@@ -49,8 +48,9 @@ class Imglist extends React.Component {
     } 
 
     widthChange(event) {
-        const newURL = this.state.url + "?" + urlprefix + "width=" + event
-        console.log(event, "this is the event") 
+        const width = this.state.width
+        const newURL = this.state.url + "?" + urlprefix + "width=" + width
+        console.log(width, "this is the width const") 
         this.setState({url: newURL}, () => {
             console.log(this.state.url, "url updated")
         })
