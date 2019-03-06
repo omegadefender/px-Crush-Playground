@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../css_files/imglist.css'
+import '../../css_files/ImgCrusher.css'
 
 const images = [
     { name: 'African Elephant ', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
@@ -43,7 +43,7 @@ class Imglist extends React.Component {
 
     handleChange(event) {
         this.setState({width: event.target.value}, () => {
-            console.log(this.state)
+            console.log(this.state, event, "State and the event")
         })
     } 
 
@@ -52,7 +52,7 @@ class Imglist extends React.Component {
         const newURL = this.state.url + "?" + urlprefix + "width=" + width
         console.log(width, "this is the width const") 
         this.setState({url: newURL}, () => {
-            console.log(this.state.url, "url updated")
+            console.log(this.state.url, "URL updated")
         })
         event.preventDefault()
     }

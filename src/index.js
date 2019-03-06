@@ -6,13 +6,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './css_files/index.css'
 import Homepage from './components/Pages/Homepage'
-import Crusher from './components/Pages/crusher';
 
 ReactDOM.render((
     <Router>
         <div>
-        <Route exact path="/" component={Homepage} />
-        <Route path="/crusher" component={Crusher} />
+        <Route path="/" component={Homepage} />
         </div>
     </Router>
     ), document.getElementById('root')
