@@ -20,17 +20,25 @@ const images = [
     { name: 'Grasshopper', url: 'https://zw5alevhy0za-stg.pxcrush.net/close-up-grasshopper-hd-wallpaper-59981.jpg' },
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
+
 let baseURL = ""
 let imgURL = ""
 const urlprefix = "pxc_"
 let queryString = ""
+
 const widthString = "width="
 let widthQS = ""
+
 const heightString = "height="
 let heightQS = ""
 
+const methods = ['fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
+const methodString = "method="
+let methodQS = ""
+
+
 function crusher() { 
-    const uncleanQS = widthQS + heightQS
+    const uncleanQS = widthQS + heightQS + methodQS
     queryString = uncleanQS.slice(0, -1)    
     imgURL = baseURL + queryString
     console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
@@ -43,7 +51,8 @@ class Imglist extends React.Component {
             url: null,
             name: '',
             width: '',
-            height: ''
+            height: '',
+            method: ''
         }
 
         this.onPicSelect = this.onPicSelect.bind(this)
@@ -51,6 +60,7 @@ class Imglist extends React.Component {
         this.widthSubmit = this.widthSubmit.bind(this)
         this.heightChange = this.heightChange.bind(this)
         this.heightSubmit = this.heightSubmit.bind(this)
+        this.methodSelect = this.methodSelect.bind(this)
     }
 
     onPicSelect(event) {
@@ -82,10 +92,17 @@ class Imglist extends React.Component {
         event.preventDefault()
     }
 
+    methodSelect(event) {
+        const methSelected = methods.find(m => m === event.target.value)
+        methodQS = urlprefix + methodString + methSelected + "&"
+        crusher()
+        this.setState({method: methSelected})
+    }
+
     render() {
         return (
             <div>
-                <select name="image-list"  onChange={this.onPicSelect}>
+                <select id="image-list" onChange={this.onPicSelect}>
                     {images.map((element, index) => { 
                       return <option value={element.name} key={index} >{element.name}</option>
                     })}
@@ -103,10 +120,14 @@ class Imglist extends React.Component {
                     </label>
                     <input type="submit" value="Height" />
                 </form>
+                <select id="methods-list" onChange={this.methodSelect}>
+                    {methods.map((element, index) => { 
+                      return <option value={element} key={index} >{element}</option>
+                    })}
+                </select>
                 <pre>?{queryString}</pre>                             
             </div>
-        )
-    }
+        )}
 }
 
 export default Imglist

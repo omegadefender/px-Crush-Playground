@@ -7,8 +7,15 @@ img {
     bottom: 0; 
 }
 
-select {
+#image-list {
   margin-top: 50px;
+  position: absolute;
+  width: 200px;
+  right: 1700px
+}
+
+#methods-list {
+  margin-top: 125px;
   position: absolute;
   width: 200px;
   right: 1700px
