@@ -3,7 +3,7 @@ import '../../css_files/ImgCrusher.css'
 
 // Look up member variables. Can all of these variables and function be moved into the constructor?
 const images = [
-    { name: 'African Elephant ', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
+    { name: 'African Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
     { name: 'Ape', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
     { name: 'Domestic Animal', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-domestic-animal-1758464.jpg' },
     { name: 'Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg' },
@@ -41,7 +41,7 @@ class Imglist extends React.Component {
         super(props)
         this.state = {
             url: null,
-            name: null,
+            name: '',
             width: '',
             height: ''
         }
@@ -53,9 +53,12 @@ class Imglist extends React.Component {
         this.heightSubmit = this.heightSubmit.bind(this)
     }
 
-    onPicSelect(element) {  
-        baseURL = element.url + "?"
-        this.setState({url: element.url, name: element.name})
+    onPicSelect(event) {  
+        const imgname = event.target.value
+        baseURL = images.find(x => x.name === imgname).url + "?"
+        this.setState({url: baseURL, name: imgname}, () => {
+            console.log(this.state)
+        })
     }
 
     widthChange(event) {
@@ -83,11 +86,11 @@ class Imglist extends React.Component {
     render() {
         return (
             <div>
-                <ul>
+                <select name="image-list"  onChange={this.onPicSelect}>
                     {images.map((element, index) => { 
-                      return <li key={index} onClick={() => this.onPicSelect(element)}>{element.name}</li>
+                      return <option value={element.name} key={index} >{element.name}</option>
                     })}
-                </ul>                       
+                </select>                       
                 <img src={this.state.url} alt={this.state.name}></img>
                 <form onSubmit={this.widthSubmit} id="width">
                     <label>

@@ -7,9 +7,11 @@ img {
     bottom: 0; 
 }
 
-ul {
+select {
   margin-top: 50px;
-  width: 200px
+  position: absolute;
+  width: 200px;
+  right: 1700px
 }
 
 li {
@@ -22,9 +24,9 @@ li {
     position: absolute;
     margin: auto;
     width: 110px;
-    left: 1170px;
-    right: 0;
-    top: 40px;
+    left: 0;
+    right: 1700px;
+    top: 70px;
     bottom: 0;
     size: 150px;
 }
@@ -33,9 +35,9 @@ li {
     position: absolute;
     margin: auto;
     width: 110px;
-    left: 1170px;
-    right: 0;
-    top: 65px;
+    left: 0;
+    right: 1700px;
+    top: 95px;
     bottom: 0;
     size: 150px;
 }
