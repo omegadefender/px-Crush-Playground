@@ -53,12 +53,11 @@ class Imglist extends React.Component {
         this.heightSubmit = this.heightSubmit.bind(this)
     }
 
-    onPicSelect(event) {  
+    onPicSelect(event) {
+        queryString = ''  
         const imgname = event.target.value
         baseURL = images.find(x => x.name === imgname).url + "?"
-        this.setState({url: baseURL, name: imgname}, () => {
-            console.log(this.state)
-        })
+        this.setState({url: baseURL, name: imgname})
     }
 
     widthChange(event) {
@@ -103,7 +102,8 @@ class Imglist extends React.Component {
                     <input type="text" onChange={this.heightChange} value={this.state.height} />
                     </label>
                     <input type="submit" value="Height" />
-                </form>             
+                </form>
+                <pre>?{queryString}</pre>                             
             </div>
         )
     }
