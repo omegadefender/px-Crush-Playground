@@ -25,6 +25,7 @@ Method see line 312
 fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow' 
 
 bgtype see line 328  
+the options are `'color'` and  `'self'`
 
 bgcolor see line 337  
 https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347

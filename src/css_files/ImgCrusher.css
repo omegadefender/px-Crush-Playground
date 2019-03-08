@@ -21,6 +21,13 @@ img {
   right: 1700px
 }
 
+#bgtype-list {
+    margin-top: 180px;
+    position: absolute;
+    width: 200px;
+    right: 1700px
+  }
+
 #width {
     position: absolute;
     margin: auto;

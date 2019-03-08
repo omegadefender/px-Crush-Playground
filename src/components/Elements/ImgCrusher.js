@@ -39,9 +39,12 @@ let methodQS = ""
 const bgcolorString = "bgcolor="
 let bgcolorQS = ""
 
+const bgtypes = ['self', 'color']
+const bgtypeString = "bgtype="
+let bgtypeQS = ""
 
 function crusher() { 
-    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS
+    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS + bgtypeQS
     queryString = uncleanQS.slice(0, -1)    
     imgURL = baseURL + queryString
     console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
@@ -56,6 +59,7 @@ class Imglist extends React.Component {
             width: '',
             height: '',
             method: '',
+            bgtype: '',
             bgcolor: ''
         }
 
@@ -67,6 +71,7 @@ class Imglist extends React.Component {
         this.methodSelect = this.methodSelect.bind(this)
         this.bgcolorChange = this.bgcolorChange.bind(this)
         this.bgcolorSubmit = this.bgcolorSubmit.bind(this)
+        this.bgtypeSelect = this.bgtypeSelect.bind(this)
     }
 
     onPicSelect(event) {
@@ -116,6 +121,13 @@ class Imglist extends React.Component {
         event.preventDefault()
     }
 
+    bgtypeSelect(event) {
+        const bgtypeSelected = bgtypes.find(b => b === event.target.value)
+        bgtypeQS = urlprefix + bgtypeString + bgtypeSelected + "&"
+        crusher()
+        this.setState({bgtype: bgtypeSelected})
+    }
+
     render() {
         return (
             <div>
@@ -148,6 +160,11 @@ class Imglist extends React.Component {
                     </label>
                     <input type="submit" value="bgcolor" />
                 </form>
+                <select id="bgtype-list" onChange={this.bgtypeSelect}>
+                    {bgtypes.map((element, index) => { 
+                      return <option value={element} key={index} >{element}</option>
+                    })}
+                </select>
                 <pre>?{queryString}</pre>                             
             </div>
         )}
