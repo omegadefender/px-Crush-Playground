@@ -6,34 +6,28 @@ This is a demo site where you can manipulate images with sliders and buttons, in
 
 See px_job.py in Pixel. That file has the code related to query string construction. 
 
-The beginning of the query string starts with ?
-All query strings must use pxc_ at the start eg. pxc_width=200 
-use & to bind multiple queries together
+The beginning of the query string starts with `?`  
+All query strings must use `pxc_` at the start eg. `pxc_width=200`   
+Use `&` to bind multiple queries together
 
 Line 47 for query string params
 
-Size
-Line 227 for size param settings
+Size - see line 227  
 either size=int,int or size=s:float
  
-Format 
-line 278
+Format see line 278  
 changes format of image
 
-quality
-line 298
-Quality is either 50 or 90.... difference is applied when image is downloaded.
+Quality see line 298   
+Quality between 50 and 90.... difference is applied when image is downloaded.
 
-method
-line 312
+Method see line 312  
 fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow' 
 
-bgtype
-line 328
+bgtype see line 328  
 
-bgcolor
-line 337 https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347
+bgcolor see line 337  
+https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347
 
-bgalpha
-line 347
+bgalpha see line 347  
 

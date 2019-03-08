@@ -5,7 +5,7 @@ import '../../css_files/ImgCrusher.css'
 const images = [
     { name: 'African Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
     { name: 'Ape', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
-    { name: 'Domestic Animal', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-domestic-animal-1758464.jpg' },
+    { name: 'Longhorn', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-domestic-animal-1758464.jpg' },
     { name: 'Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg' },
     { name: 'Hedgehog', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-world-autumn-206862.jpg' },
     { name: 'Pink Bird', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animals-avian-158471.jpg' },
@@ -36,9 +36,12 @@ const methods = ['fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravit
 const methodString = "method="
 let methodQS = ""
 
+const bgcolorString = "bgcolor="
+let bgcolorQS = ""
+
 
 function crusher() { 
-    const uncleanQS = widthQS + heightQS + methodQS
+    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS
     queryString = uncleanQS.slice(0, -1)    
     imgURL = baseURL + queryString
     console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
@@ -52,7 +55,8 @@ class Imglist extends React.Component {
             name: '',
             width: '',
             height: '',
-            method: ''
+            method: '',
+            bgcolor: ''
         }
 
         this.onPicSelect = this.onPicSelect.bind(this)
@@ -61,6 +65,8 @@ class Imglist extends React.Component {
         this.heightChange = this.heightChange.bind(this)
         this.heightSubmit = this.heightSubmit.bind(this)
         this.methodSelect = this.methodSelect.bind(this)
+        this.bgcolorChange = this.bgcolorChange.bind(this)
+        this.bgcolorSubmit = this.bgcolorSubmit.bind(this)
     }
 
     onPicSelect(event) {
@@ -99,6 +105,17 @@ class Imglist extends React.Component {
         this.setState({method: methSelected})
     }
 
+    bgcolorChange(event) {
+        this.setState({bgcolor: event.target.value})
+    }
+
+    bgcolorSubmit(event) {
+        bgcolorQS = urlprefix + bgcolorString + this.state.bgcolor + "&"
+        crusher()
+        this.setState({url: imgURL })
+        event.preventDefault()
+    }
+
     render() {
         return (
             <div>
@@ -125,6 +142,12 @@ class Imglist extends React.Component {
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
+                <form onSubmit={this.bgcolorSubmit} id="bgcolor">
+                    <label>
+                    <input type="text" onChange={this.bgcolorChange} value={this.state.bgcolor} />
+                    </label>
+                    <input type="submit" value="bgcolor" />
+                </form>
                 <pre>?{queryString}</pre>                             
             </div>
         )}
