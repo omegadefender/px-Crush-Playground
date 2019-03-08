@@ -61,6 +61,28 @@ img {
     size: 150px;
 }
 
+#quality {
+    position: absolute;
+    margin: auto;
+    width: 110px;
+    left: 0;
+    right: 1700px;
+    top: 203px;
+    bottom: 0;
+    size: 150px;
+}
+
+#bgalpha {
+    position: absolute;
+    margin: auto;
+    width: 110px;
+    left: 0;
+    right: 1700px;
+    top: 233px;
+    bottom: 0;
+    size: 150px;
+}
+
 label {
     color: white;
     font-size: small;
@@ -74,10 +96,10 @@ input {
 pre {
     background-color: black;
     color: white;
-    font-size: 40px;
+    font-size: 30px;
     widows: 200px;
     margin: 0 auto;
     position: absolute;
     bottom: 10px;
-    right: 650px;
+    right: 200px;
 }

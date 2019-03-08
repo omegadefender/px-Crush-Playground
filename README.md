@@ -21,14 +21,14 @@ changes format of image
 Quality see line 298   
 Quality between 50 and 90.... difference is applied when image is downloaded.
 
-Method see line 312  
-fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow' 
+Method see line 312 
+the options are `'fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow'`
 
 bgtype see line 328  
-the options are `'color'` and  `'self'`
+the options are `pxc_bgtype=color'` and  `pxc_bgtype=self`
 
 bgcolor see line 337  
-https://wuoty1uqpw7y-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg?pxc_size=300,300&pxc_method=fitfill&pxc_bgcolor=ff6347
+Is in hex format without the # eg. `pxc_bgcolor=ff6347`
 
-bgalpha see line 347  
-
+bgalpha see line 347
+Is in a range from 0-100  

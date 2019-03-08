@@ -43,8 +43,14 @@ const bgtypes = ['self', 'color']
 const bgtypeString = "bgtype="
 let bgtypeQS = ""
 
+const qualityString = "quality="
+let qualityQS = ""
+
+const bgalphaString = "bgalpha="
+let bgalphaQS = ""
+
 function crusher() { 
-    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS + bgtypeQS
+    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS + bgtypeQS + qualityQS + bgalphaQS
     queryString = uncleanQS.slice(0, -1)    
     imgURL = baseURL + queryString
     console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
@@ -60,7 +66,9 @@ class Imglist extends React.Component {
             height: '',
             method: '',
             bgtype: '',
-            bgcolor: ''
+            bgcolor: '',
+            quality: '',
+            bgalpha: ''
         }
 
         this.onPicSelect = this.onPicSelect.bind(this)
@@ -72,6 +80,11 @@ class Imglist extends React.Component {
         this.bgcolorChange = this.bgcolorChange.bind(this)
         this.bgcolorSubmit = this.bgcolorSubmit.bind(this)
         this.bgtypeSelect = this.bgtypeSelect.bind(this)
+        this.qualityChange = this.qualityChange.bind(this)
+        this.qualitySubmit = this.qualitySubmit.bind(this)
+        this.bgalphaChange = this.bgalphaChange.bind(this)
+        this.bgalphaSubmit = this.bgalphaSubmit.bind(this)
+
     }
 
     onPicSelect(event) {
@@ -128,6 +141,29 @@ class Imglist extends React.Component {
         this.setState({bgtype: bgtypeSelected})
     }
 
+    qualityChange(event) {
+        this.setState({quality: event.target.value})
+    }
+
+    qualitySubmit(event) {
+        qualityQS = urlprefix + qualityString + this.state.quality + "&"
+        crusher()
+        this.setState({url: imgURL })
+        event.preventDefault()
+    }
+
+    bgalphaChange(event) {
+        this.setState({bgalpha: event.target.value})
+    }
+
+    bgalphaSubmit(event) {
+        bgalphaQS = urlprefix + bgalphaString + this.state.bgalpha + "&"
+        crusher()
+        this.setState({url: imgURL })
+        event.preventDefault()
+    }
+
+
     render() {
         return (
             <div>
@@ -165,6 +201,18 @@ class Imglist extends React.Component {
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
+                <form onSubmit={this.qualitySubmit} id="quality">
+                    <label>
+                    <input type="text" onChange={this.qualityChange} value={this.state.quality} />
+                    </label>
+                    <input type="submit" value="quality" />
+                </form>
+                <form onSubmit={this.bgalphaSubmit} id="bgalpha">
+                    <label>
+                    <input type="text" onChange={this.bgalphaChange} value={this.state.bgalpha} />
+                    </label>
+                    <input type="submit" value="bgalpha" />
+                </form>
                 <pre>?{queryString}</pre>                             
             </div>
         )}
