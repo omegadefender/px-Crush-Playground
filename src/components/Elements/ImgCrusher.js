@@ -141,13 +141,13 @@ class Imglist extends React.Component {
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>           
-                <form id="width">Width:
+                <form id="width">WIDTH
                     <input type="range" min="10" max="1500" onChange={this.widthChange} value={this.state.width} id="widthSlider" />
                 </form>
-                <form id="height">Height:
+                <form id="height">HEIGHT
                     <input type="range" min="10" max="1500" onChange={this.heightChange} value={this.state.height} id="heightSlider" />
                 </form>
-                <form id="quality">Quality:                    
+                <form id="quality">QUALITY                    
                     <input type="range" min="49" max="91" onChange={this.qualityChange} value={this.state.quality} id="qualitySlider" />
                 </form>
                 <form onSubmit={this.bgcolorSubmit} id="bgcolor">
@@ -161,10 +161,12 @@ class Imglist extends React.Component {
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
-                <form id="bgalpha">BG Alpha:                    
+                <form id="bgalpha">BG ALPHA                    
                     <input type="range" min="0" max="100" onChange={this.bgalphaChange} value={this.state.bgalpha} id="bgalphaSlider" />
                 </form>
-                <pre>?{this.queryString}</pre>                             
+                <div id="qsholder">
+                    <pre>?{this.queryString}</pre> 
+                </div>                                         
             </div>
         )}
 }

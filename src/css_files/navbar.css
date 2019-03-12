@@ -14,7 +14,7 @@ nav {
     width: 100%;
 }
 
-div {
+#navlogo {
     float: left;
     background: url(../images/logo-white.png) 50%/100% no-repeat;
     width: 165px;

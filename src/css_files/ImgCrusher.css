@@ -12,20 +12,28 @@ label {
     font-size: small;
 }
 
+form {
+    color: white;
+}
+
 input {
     width: 50px;
     font-size: small;
 }
 
+#qsholder {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 20px;
+}
+
 pre {
+    display: inline;
     background-color: black;
     color: white;
     font-size: 30px;
-    widows: 200px;
-    margin: 0 auto;
-    position: absolute;
-    bottom: 10px;
-    right: 200px;
 }
 
 #image-list {
@@ -46,10 +54,8 @@ pre {
     position: absolute;
     margin: auto;
     width: 250px;
-    left: 0;
-    right: 1700px;
+    right: 1660px;
     top: 100px;
-    bottom: 0;
     size: 150px;
 }
 
@@ -61,10 +67,8 @@ pre {
     position: absolute;
     margin: auto;
     width: 250px;
-    left: 0;
-    right: 1700px;
+    right: 1660px;
     top: 150px;
-    bottom: 0;
     size: 150px;
 }
 
@@ -76,10 +80,8 @@ pre {
     position: absolute;
     margin: auto;
     width: 250px;
-    left: 0;
-    right: 1700px;
+    right: 1660px;
     top: 200px;
-    bottom: 0;
     size: 150px;
 }
 
@@ -109,8 +111,7 @@ pre {
     position: absolute;
     margin: auto;
     width: 250px;
-    left: 0;
-    right: 1700px;
+    right: 1660px;
     top: 300px;
     bottom: 0;
     size: 150px;

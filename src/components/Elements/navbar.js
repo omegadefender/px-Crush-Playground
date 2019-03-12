@@ -5,7 +5,7 @@ class Navbar extends React.Component {
     render() {
         return (
                <nav>
-                    <div></div>
+                    <div id="navlogo"></div>
                </nav>          
         )}
 }
