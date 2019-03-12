@@ -15,7 +15,7 @@ const images = [
     { name: 'Lemur', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-eyes-fur-33149.jpg' },
     { name: 'Dragonfly', url: 'https://zw5alevhy0za-stg.pxcrush.net/antenna-biology-blue-531587.jpg' },
     { name: 'Snail', url: 'https://zw5alevhy0za-stg.pxcrush.net/antennae-close-up-garden-pest-53203.jpg' },
-    { name: 'Blue Bird', url: 'https://zw5alevhy0za-stg.pxcrush.net/avian-beak-bird-416117.jpg' },
+    { name: 'Kingfisher', url: 'https://zw5alevhy0za-stg.pxcrush.net/avian-beak-bird-416117.jpg' },
     { name: 'Grasshopper', url: 'https://zw5alevhy0za-stg.pxcrush.net/close-up-grasshopper-hd-wallpaper-59981.jpg' },
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
@@ -143,12 +143,12 @@ class Imglist extends React.Component {
     render() {
         return (
             <div>
+                <img src={this.state.url} alt={this.state.name}></img>
                 <select id="image-list" onChange={this.onPicSelect}>
                     {images.map((element, index) => { 
                       return <option value={element.name} key={index} >{element.name}</option>
                     })}
-                </select>                       
-                <img src={this.state.url} alt={this.state.name}></img>
+                </select>           
                 <form onSubmit={this.widthSubmit} id="width">
                     <label>
                     <input type="text" onChange={this.widthChange} value={this.state.width} />
