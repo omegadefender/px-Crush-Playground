@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../css_files/ImgCrusher.css'
 
-// Look up member variables. Can all of these variables and function be moved into the constructor?
 const images = [
     { name: 'African Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
     { name: 'Ape', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
@@ -21,41 +20,6 @@ const images = [
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
 
-let baseURL = ""
-let imgURL = ""
-const urlprefix = "pxc_"
-let queryString = ""
-
-const widthString = "width="
-let widthQS = ""
-
-const heightString = "height="
-let heightQS = ""
-
-const methods = ['fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
-const methodString = "method="
-let methodQS = ""
-
-const bgcolorString = "bgcolor="
-let bgcolorQS = ""
-
-const bgtypes = ['self', 'color']
-const bgtypeString = "bgtype="
-let bgtypeQS = ""
-
-const qualityString = "quality="
-let qualityQS = ""
-
-const bgalphaString = "bgalpha="
-let bgalphaQS = ""
-
-function crusher() { 
-    const uncleanQS = widthQS + heightQS + methodQS + bgcolorQS + bgtypeQS + qualityQS + bgalphaQS
-    queryString = uncleanQS.slice(0, -1)    
-    imgURL = baseURL + queryString
-    console.log("Here is the imgURL:", imgURL, "and the query string:", queryString)
-}
-
 class Imglist extends React.Component {
     constructor(props) {
         super(props)
@@ -71,98 +35,110 @@ class Imglist extends React.Component {
             bgalpha: ''
         }
 
-        this.onPicSelect = this.onPicSelect.bind(this)
-        this.widthChange = this.widthChange.bind(this)
-        this.widthSubmit = this.widthSubmit.bind(this)
-        this.heightChange = this.heightChange.bind(this)
-        this.heightSubmit = this.heightSubmit.bind(this)
-        this.methodSelect = this.methodSelect.bind(this)
-        this.bgcolorChange = this.bgcolorChange.bind(this)
-        this.bgcolorSubmit = this.bgcolorSubmit.bind(this)
-        this.bgtypeSelect = this.bgtypeSelect.bind(this)
-        this.qualityChange = this.qualityChange.bind(this)
-        this.qualitySubmit = this.qualitySubmit.bind(this)
-        this.bgalphaChange = this.bgalphaChange.bind(this)
-        this.bgalphaSubmit = this.bgalphaSubmit.bind(this)
-
+        this.baseURL = ''
+        this.imgURL = ''
+        this.urlprefix = "pxc_"
+        this.queryString = ''
+        this.widthString = 'width='
+        this.widthQS = ''
+        this.heightString = 'height='
+        this.heightQS = ''
+        this.methods = ['fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
+        this.methodString = 'method='
+        this.methodQS = ''
+        this.bgcolorString = 'bgcolor='
+        this.bgcolorQS = ''
+        this.bgtypes = ['self', 'color']
+        this.bgtypeString = 'bgtype='
+        this.bgtypeQS = ''
+        this.qualityString = 'quality='
+        this.qualityQS = ''
+        this.bgalphaString = 'bgalpha='
+        this.bgalphaQS = ''        
     }
 
-    onPicSelect(event) {
-        queryString = ''  
+    crusher = () => { 
+        const uncleanQS = this.widthQS + this.heightQS + this.methodQS + this.bgcolorQS + this.bgtypeQS + this.qualityQS + this.bgalphaQS
+        this.queryString = uncleanQS.slice(0, -1)    
+        this.imgURL = this.baseURL + this.queryString
+        console.log("Here is the imgURL:", this.imgURL, "and the query string:", this.queryString)
+    }
+
+    onPicSelect = (event) => {
+        this.queryString = ''  
         const imgname = event.target.value
-        baseURL = images.find(x => x.name === imgname).url + "?"
-        this.setState({url: baseURL, name: imgname})
+        this.baseURL = images.find(x => x.name === imgname).url + "?"
+        this.setState({url: this.baseURL, name: imgname})
     }
 
-    widthChange(event) {
+    widthChange = (event) => {
         this.setState({width: event.target.value})
     } 
 
-    widthSubmit(event) {
-        widthQS = urlprefix + widthString + this.state.width + "&"
-        crusher()
-        this.setState({url: imgURL})
+    widthSubmit = (event) => {
+        this.widthQS = this.urlprefix + this.widthString + this.state.width + "&"
+        this.crusher()
+        this.setState({url: this.imgURL})
         event.preventDefault()
     }
 
-    heightChange(event) {
+    heightChange = (event) => {
         this.setState({height: event.target.value})
     }
 
-    heightSubmit(event) {
-        heightQS = urlprefix + heightString + this.state.height + "&"
-        crusher()
-        this.setState({url: imgURL })
+    heightSubmit = (event) => {
+        this.heightQS = this.urlprefix + this.heightString + this.state.height + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
         event.preventDefault()
     }
 
-    methodSelect(event) {
-        const methSelected = methods.find(m => m === event.target.value)
-        methodQS = urlprefix + methodString + methSelected + "&"
-        crusher()
+    methodSelect = (event) => {
+        const methSelected = this.methods.find(m => m === event.target.value)
+        this.methodQS = this.urlprefix + this.methodString + methSelected + "&"
+        this.crusher()
         this.setState({method: methSelected})
     }
 
-    bgcolorChange(event) {
+    bgcolorChange = (event) => {
         this.setState({bgcolor: event.target.value})
     }
 
-    bgcolorSubmit(event) {
-        bgcolorQS = urlprefix + bgcolorString + this.state.bgcolor + "&"
-        crusher()
-        this.setState({url: imgURL })
+    bgcolorSubmit = (event) => {
+        this.bgcolorQS = this.urlprefix + this.bgcolorString + this.state.bgcolor + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
         event.preventDefault()
     }
 
-    bgtypeSelect(event) {
-        const bgtypeSelected = bgtypes.find(b => b === event.target.value)
-        bgtypeQS = urlprefix + bgtypeString + bgtypeSelected + "&"
-        crusher()
+    bgtypeSelect = (event) => {
+        const bgtypeSelected = this.bgtypes.find(b => b === event.target.value)
+        this.bgtypeQS = this.urlprefix + this.bgtypeString + bgtypeSelected + "&"
+        this.crusher()
         this.setState({bgtype: bgtypeSelected})
     }
 
-    qualityChange(event) {
+    qualityChange = (event) => {
         this.setState({quality: event.target.value})
     }
 
-    qualitySubmit(event) {
-        qualityQS = urlprefix + qualityString + this.state.quality + "&"
-        crusher()
-        this.setState({url: imgURL })
+    qualitySubmit = (event) => {
+        this.qualityQS = this.urlprefix + this.qualityString + this.state.quality + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
         event.preventDefault()
     }
 
-    bgalphaChange(event) {
+    bgalphaChange = (event) => {
         this.setState({bgalpha: event.target.value})
     }
 
-    bgalphaSubmit(event) {
-        bgalphaQS = urlprefix + bgalphaString + this.state.bgalpha + "&"
-        crusher()
-        this.setState({url: imgURL })
+    bgalphaSubmit = (event) => {
+        this.bgalphaQS = this.urlprefix + this.bgalphaString + this.state.bgalpha + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
         event.preventDefault()
     }
-
 
     render() {
         return (
@@ -186,7 +162,7 @@ class Imglist extends React.Component {
                     <input type="submit" value="Height" />
                 </form>
                 <select id="methods-list" onChange={this.methodSelect}>
-                    {methods.map((element, index) => { 
+                    {this.methods.map((element, index) => { 
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
@@ -197,7 +173,7 @@ class Imglist extends React.Component {
                     <input type="submit" value="bgcolor" />
                 </form>
                 <select id="bgtype-list" onChange={this.bgtypeSelect}>
-                    {bgtypes.map((element, index) => { 
+                    {this.bgtypes.map((element, index) => { 
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
@@ -213,7 +189,7 @@ class Imglist extends React.Component {
                     </label>
                     <input type="submit" value="bgalpha" />
                 </form>
-                <pre>?{queryString}</pre>                             
+                <pre>?{this.queryString}</pre>                             
             </div>
         )}
 }
