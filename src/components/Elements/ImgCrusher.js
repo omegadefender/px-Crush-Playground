@@ -61,7 +61,6 @@ class Imglist extends React.Component {
         const uncleanQS = this.widthQS + this.heightQS + this.methodQS + this.bgcolorQS + this.bgtypeQS + this.qualityQS + this.bgalphaQS
         this.queryString = uncleanQS.slice(0, -1)    
         this.imgURL = this.baseURL + this.queryString
-        console.log("Here is the imgURL:", this.imgURL, "and the query string:", this.queryString)
     }
 
     onPicSelect = (event) => {
@@ -71,34 +70,36 @@ class Imglist extends React.Component {
         this.setState({url: this.baseURL, name: imgname})
     }
 
-    widthChange = (event) => {
-        this.setState({width: event.target.value})
-    } 
-
-    widthSubmit = (event) => {
-        this.widthQS = this.urlprefix + this.widthString + this.state.width + "&"
-        this.crusher()
-        this.setState({url: this.imgURL})
-        event.preventDefault()
-    }
-
-    heightChange = (event) => {
-        this.setState({height: event.target.value})
-    }
-
-    heightSubmit = (event) => {
-        this.heightQS = this.urlprefix + this.heightString + this.state.height + "&"
-        this.crusher()
-        this.setState({url: this.imgURL })
-        event.preventDefault()
-    }
-
     methodSelect = (event) => {
         const methSelected = this.methods.find(m => m === event.target.value)
         this.methodQS = this.urlprefix + this.methodString + methSelected + "&"
         this.crusher()
         this.setState({method: methSelected})
     }
+
+    widthChange = (event) => {
+        this.setState({width: event.target.value})
+        this.widthQS = this.urlprefix + this.widthString + this.state.width + "&"
+        this.crusher()
+        this.setState({url: this.imgURL})
+        event.preventDefault()
+    } 
+
+    heightChange = (event) => {
+        this.setState({height: event.target.value})
+        this.heightQS = this.urlprefix + this.heightString + this.state.height + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
+        event.preventDefault()
+    }
+
+    qualityChange = (event) => {
+        this.setState({quality: event.target.value})
+        this.qualityQS = this.urlprefix + this.qualityString + this.state.quality + "&"
+        this.crusher()
+        this.setState({url: this.imgURL })
+        event.preventDefault()
+    }    
 
     bgcolorChange = (event) => {
         this.setState({bgcolor: event.target.value})
@@ -116,24 +117,10 @@ class Imglist extends React.Component {
         this.bgtypeQS = this.urlprefix + this.bgtypeString + bgtypeSelected + "&"
         this.crusher()
         this.setState({bgtype: bgtypeSelected})
-    }
-
-    qualityChange = (event) => {
-        this.setState({quality: event.target.value})
-    }
-
-    qualitySubmit = (event) => {
-        this.qualityQS = this.urlprefix + this.qualityString + this.state.quality + "&"
-        this.crusher()
-        this.setState({url: this.imgURL })
-        event.preventDefault()
-    }
+    }   
 
     bgalphaChange = (event) => {
         this.setState({bgalpha: event.target.value})
-    }
-
-    bgalphaSubmit = (event) => {
         this.bgalphaQS = this.urlprefix + this.bgalphaString + this.state.bgalpha + "&"
         this.crusher()
         this.setState({url: this.imgURL })
@@ -148,24 +135,21 @@ class Imglist extends React.Component {
                     {images.map((element, index) => { 
                       return <option value={element.name} key={index} >{element.name}</option>
                     })}
-                </select>           
-                <form onSubmit={this.widthSubmit} id="width">
-                    <label>
-                    <input type="text" onChange={this.widthChange} value={this.state.width} />
-                    </label>
-                    <input type="submit" value="Width" />
-                </form>
-                <form onSubmit={this.heightSubmit} id="height">
-                    <label>
-                    <input type="text" onChange={this.heightChange} value={this.state.height} />
-                    </label>
-                    <input type="submit" value="Height" />
-                </form>
+                </select>
                 <select id="methods-list" onChange={this.methodSelect}>
                     {this.methods.map((element, index) => { 
                       return <option value={element} key={index} >{element}</option>
                     })}
-                </select>
+                </select>           
+                <form id="width">Width:
+                    <input type="range" min="10" max="1500" onChange={this.widthChange} value={this.state.width} id="widthSlider" />
+                </form>
+                <form id="height">Height:
+                    <input type="range" min="10" max="1500" onChange={this.heightChange} value={this.state.height} id="heightSlider" />
+                </form>
+                <form id="quality">Quality:                    
+                    <input type="range" min="49" max="91" onChange={this.qualityChange} value={this.state.quality} id="qualitySlider" />
+                </form>
                 <form onSubmit={this.bgcolorSubmit} id="bgcolor">
                     <label>
                     <input type="text" onChange={this.bgcolorChange} value={this.state.bgcolor} />
@@ -177,17 +161,8 @@ class Imglist extends React.Component {
                       return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
-                <form onSubmit={this.qualitySubmit} id="quality">
-                    <label>
-                    <input type="text" onChange={this.qualityChange} value={this.state.quality} />
-                    </label>
-                    <input type="submit" value="quality" />
-                </form>
-                <form onSubmit={this.bgalphaSubmit} id="bgalpha">
-                    <label>
-                    <input type="text" onChange={this.bgalphaChange} value={this.state.bgalpha} />
-                    </label>
-                    <input type="submit" value="bgalpha" />
+                <form id="bgalpha">BG Alpha:                    
+                    <input type="range" min="0" max="100" onChange={this.bgalphaChange} value={this.state.bgalpha} id="bgalphaSlider" />
                 </form>
                 <pre>?{this.queryString}</pre>                             
             </div>

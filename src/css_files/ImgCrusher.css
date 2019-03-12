@@ -7,82 +7,6 @@ img {
     bottom: 0; 
 }
 
-#image-list {
-  margin-top: 50px;
-  position: absolute;
-  width: 200px;
-  right: 1700px
-}
-
-#methods-list {
-  margin-top: 125px;
-  position: absolute;
-  width: 200px;
-  right: 1700px
-}
-
-#bgtype-list {
-    margin-top: 180px;
-    position: absolute;
-    width: 200px;
-    right: 1700px
-  }
-
-#width {
-    position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 70px;
-    bottom: 0;
-    size: 150px;
-}
-
-#height {
-    position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 95px;
-    bottom: 0;
-    size: 150px;
-}
-
-#bgcolor {
-    position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 148px;
-    bottom: 0;
-    size: 150px;
-}
-
-#quality {
-    position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 203px;
-    bottom: 0;
-    size: 150px;
-}
-
-#bgalpha {
-    position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 233px;
-    bottom: 0;
-    size: 150px;
-}
-
 label {
     color: white;
     font-size: small;
@@ -102,4 +26,96 @@ pre {
     position: absolute;
     bottom: 10px;
     right: 200px;
+}
+
+#image-list {
+    margin-top: 50px;
+    position: absolute;
+    width: 200px;
+    right: 1700px
+  }
+
+#methods-list {
+    margin-top: 75px;
+    position: absolute;
+    width: 200px;
+    right: 1700px
+  }
+
+#width {
+    position: absolute;
+    margin: auto;
+    width: 250px;
+    left: 0;
+    right: 1700px;
+    top: 100px;
+    bottom: 0;
+    size: 150px;
+}
+
+#widthSlider {
+    width: 250px
+}
+
+#height {
+    position: absolute;
+    margin: auto;
+    width: 250px;
+    left: 0;
+    right: 1700px;
+    top: 150px;
+    bottom: 0;
+    size: 150px;
+}
+
+#heightSlider {
+    width: 250px
+}
+
+#quality {
+    position: absolute;
+    margin: auto;
+    width: 250px;
+    left: 0;
+    right: 1700px;
+    top: 200px;
+    bottom: 0;
+    size: 150px;
+}
+
+#qualitySlider {
+    width: 250px
+}
+
+#bgtype-list {
+    margin-top: 250px;
+    position: absolute;
+    width: 200px;
+    right: 1700px
+  }
+
+#bgcolor {
+    position: absolute;
+    margin: auto;
+    width: 110px;
+    left: 0;
+    right: 1700px;
+    top: 275px;
+    bottom: 0;
+    size: 150px;
+}
+
+#bgalpha {
+    position: absolute;
+    margin: auto;
+    width: 250px;
+    left: 0;
+    right: 1700px;
+    top: 300px;
+    bottom: 0;
+    size: 150px;
+}
+
+#bgalphaSlider {
+    width: 250px
 }
