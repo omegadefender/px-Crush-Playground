@@ -96,15 +96,11 @@ pre {
     right: 1700px
   }
 
-#bgcolor {
+#bgcolor-list {
+    margin-top: 275px;
     position: absolute;
-    margin: auto;
-    width: 110px;
-    left: 0;
-    right: 1700px;
-    top: 275px;
-    bottom: 0;
-    size: 150px;
+    width: 200px;
+    right: 1700px
 }
 
 #bgalpha {

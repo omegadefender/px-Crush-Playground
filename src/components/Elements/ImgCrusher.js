@@ -45,9 +45,18 @@ class Imgcrusher extends React.Component {
         this.methods = ['Choose a Method', 'fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
         this.methodString = 'method='
         this.methodQS = ''
+        this.bgcolors = [   
+            { name: 'Choose a Background Color', code: 'none' },
+            { name: 'White', code: 'ffffff' }, 
+            { name: 'Black', code: '000000' },
+            { name: 'Blue', code: '0000FF' },
+            { name: 'Red', code: 'ff0000' },
+            { name: 'Green', code: '008000' },
+            { name: 'Yellow', code: 'ffff00' }
+        ]
         this.bgcolorString = 'bgcolor='
         this.bgcolorQS = ''
-        this.bgtypes = ['self', 'color']
+        this.bgtypes = ['Choose a Background Type', 'self', 'color']
         this.bgtypeString = 'bgtype='
         this.bgtypeQS = ''
         this.qualityString = 'quality='
@@ -109,27 +118,36 @@ class Imgcrusher extends React.Component {
     }    
 
     bgcolorChange = (event) => {
-        this.setState({bgcolor: event.target.value})
+        const bgcolorcode = this.bgcolors.find(c => c.name === event.target.value).code
+        this.bgcolorQScalculator(bgcolorcode)
+        this.imgCrusher()
+        event.preventDefault()
     }
 
-    bgcolorSubmit = (event) => {
-        this.bgcolorQS = this.urlprefix + this.bgcolorString + this.state.bgcolor + "&"
-        this.imgCrusher()
-        this.setState({url: this.imgURL })
-        event.preventDefault()
+    bgcolorQScalculator = (colorHex) => {
+        if (colorHex === 'none')
+            this.bgcolorQS = ''
+        else 
+            this.bgcolorQS = this.urlprefix + this.bgcolorString + colorHex + "&" 
     }
 
     bgtypeSelect = (event) => {
         const bgtypeSelected = this.bgtypes.find(b => b === event.target.value)
-        this.bgtypeQS = this.urlprefix + this.bgtypeString + bgtypeSelected + "&"
+        this.bgtypeQScalculator(bgtypeSelected)
         this.imgCrusher()
     }   
+
+    bgtypeQScalculator = (bgType) => {
+        if (bgType === 'Choose a Background Type')
+            this.bgtypeQS = ''
+        else 
+            this.bgtypeQS = this.urlprefix + this.bgtypeString + bgType + "&" 
+    }
 
     bgalphaChange = (event) => {
         this.setState({bgalpha: event.target.value})
         this.bgalphaQS = this.urlprefix + this.bgalphaString + this.state.bgalpha + "&"
         this.imgCrusher()
-        this.setState({url: this.imgURL })
         event.preventDefault()
     }
 
@@ -156,12 +174,11 @@ class Imgcrusher extends React.Component {
                 <form id="quality">QUALITY                    
                     <input type="range" min="49" max="91" onChange={this.qualityChange} value={this.state.quality} id="qualitySlider" />
                 </form>
-                <form onSubmit={this.bgcolorSubmit} id="bgcolor">
-                    <label>
-                    <input type="text" onChange={this.bgcolorChange} value={this.state.bgcolor} />
-                    </label>
-                    <input type="submit" value="bgcolor" />
-                </form>
+                <select id="bgcolor-list" onChange={this.bgcolorChange} >
+                    {this.bgcolors.map((element, index) => {
+                        return <option value={element.name} key={index} >{element.name}</option>
+                    })}
+                </select>
                 <select id="bgtype-list" onChange={this.bgtypeSelect}>
                     {this.bgtypes.map((element, index) => { 
                         return <option value={element} key={index} >{element}</option>
