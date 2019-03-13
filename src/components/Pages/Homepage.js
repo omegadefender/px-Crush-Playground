@@ -1,13 +1,13 @@
 import React from 'react'
 import Navbar from '../Elements/navbar'
-import Imglist from '../Elements/ImgCrusher'
+import Imgcrusher from '../Elements/ImgCrusher'
 
 class Homepage extends React.Component {
     render() {
         return (
             <div>
             <Navbar />
-            <Imglist />
+            <Imgcrusher />
             </div>
             )
     }

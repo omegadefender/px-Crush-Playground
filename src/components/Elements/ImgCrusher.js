@@ -2,8 +2,9 @@ import React from 'react'
 import '../../css_files/ImgCrusher.css'
 
 const images = [
+    { name: 'Choose an Image', url: '' },
     { name: 'African Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/african-elephant-animal-big-1772737.jpg' },
-    { name: 'Ape', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
+    { name: 'Orangutan', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-ape-1785283.jpg' },
     { name: 'Longhorn', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-domestic-animal-1758464.jpg' },
     { name: 'Elephant', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-photography-elephant-1772706.jpg' },
     { name: 'Hedgehog', url: 'https://zw5alevhy0za-stg.pxcrush.net/animal-animal-world-autumn-206862.jpg' },
@@ -20,16 +21,14 @@ const images = [
     { name: 'Sqirrel', url: 'https://zw5alevhy0za-stg.pxcrush.net/fence-macro-park-1320459.jpg' }
 ]
 
-class Imglist extends React.Component {
+class Imgcrusher extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: null,
+            url: '',
             name: '',
             width: '',
             height: '',
-            method: '',
-            bgtype: '',
             bgcolor: '',
             quality: '',
             bgalpha: ''
@@ -43,7 +42,7 @@ class Imglist extends React.Component {
         this.widthQS = ''
         this.heightString = 'height='
         this.heightQS = ''
-        this.methods = ['fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
+        this.methods = ['Choose a Method', 'fit', 'fitfill', 'limit', 'limitfill', 'crop', 'trim', 'gravity', 'gravityfill', 'gravityshow']
         this.methodString = 'method='
         this.methodQS = ''
         this.bgcolorString = 'bgcolor='
@@ -57,38 +56,46 @@ class Imglist extends React.Component {
         this.bgalphaQS = ''        
     }
 
-    crusher = () => { 
-        const uncleanQS = this.widthQS + this.heightQS + this.methodQS + this.bgcolorQS + this.bgtypeQS + this.qualityQS + this.bgalphaQS
+    imgCrusher = () => { 
+        const uncleanQS = this.methodQS + this.widthQS + this.heightQS + this.qualityQS + this.bgcolorQS + this.bgtypeQS + this.bgalphaQS
         this.queryString = uncleanQS.slice(0, -1)    
         this.imgURL = this.baseURL + this.queryString
+        this.setState({url: this.imgURL})
     }
 
-    onPicSelect = (event) => {
+    imgSelector = (event) => {
         this.queryString = ''  
         const imgname = event.target.value
         this.baseURL = images.find(x => x.name === imgname).url + "?"
         this.setState({url: this.baseURL, name: imgname})
+        event.preventDefault()
     }
 
     methodSelect = (event) => {
         const methSelected = this.methods.find(m => m === event.target.value)
-        this.methodQS = this.urlprefix + this.methodString + methSelected + "&"
-        this.crusher()
-        this.setState({method: methSelected})
+        this.methQScalculator(methSelected)
+        this.imgCrusher()
+        event.preventDefault()
+    }
+
+    methQScalculator = (methType) => {
+        if (methType === 'Choose a Method')
+            this.methodQS = ''
+        else 
+            this.methodQS = this.urlprefix + this.methodString + methType + "&"      
     }
 
     widthChange = (event) => {
         this.setState({width: event.target.value})
-        this.widthQS = this.urlprefix + this.widthString + this.state.width + "&"
-        this.crusher()
-        this.setState({url: this.imgURL})
+        this.widthQS = this.urlprefix + this.widthString + event.target.value + "&"
+        this.imgCrusher()        
         event.preventDefault()
     } 
 
     heightChange = (event) => {
         this.setState({height: event.target.value})
         this.heightQS = this.urlprefix + this.heightString + this.state.height + "&"
-        this.crusher()
+        this.imgCrusher()
         this.setState({url: this.imgURL })
         event.preventDefault()
     }
@@ -96,7 +103,7 @@ class Imglist extends React.Component {
     qualityChange = (event) => {
         this.setState({quality: event.target.value})
         this.qualityQS = this.urlprefix + this.qualityString + this.state.quality + "&"
-        this.crusher()
+        this.imgCrusher()
         this.setState({url: this.imgURL })
         event.preventDefault()
     }    
@@ -107,7 +114,7 @@ class Imglist extends React.Component {
 
     bgcolorSubmit = (event) => {
         this.bgcolorQS = this.urlprefix + this.bgcolorString + this.state.bgcolor + "&"
-        this.crusher()
+        this.imgCrusher()
         this.setState({url: this.imgURL })
         event.preventDefault()
     }
@@ -115,14 +122,13 @@ class Imglist extends React.Component {
     bgtypeSelect = (event) => {
         const bgtypeSelected = this.bgtypes.find(b => b === event.target.value)
         this.bgtypeQS = this.urlprefix + this.bgtypeString + bgtypeSelected + "&"
-        this.crusher()
-        this.setState({bgtype: bgtypeSelected})
+        this.imgCrusher()
     }   
 
     bgalphaChange = (event) => {
         this.setState({bgalpha: event.target.value})
         this.bgalphaQS = this.urlprefix + this.bgalphaString + this.state.bgalpha + "&"
-        this.crusher()
+        this.imgCrusher()
         this.setState({url: this.imgURL })
         event.preventDefault()
     }
@@ -131,14 +137,14 @@ class Imglist extends React.Component {
         return (
             <div>
                 <img src={this.state.url} alt={this.state.name}></img>
-                <select id="image-list" onChange={this.onPicSelect}>
+                <select id="image-list" onChange={this.imgSelector}>
                     {images.map((element, index) => { 
-                      return <option value={element.name} key={index} >{element.name}</option>
+                        return <option value={element.name} key={index} >{element.name}</option>
                     })}
                 </select>
                 <select id="methods-list" onChange={this.methodSelect}>
                     {this.methods.map((element, index) => { 
-                      return <option value={element} key={index} >{element}</option>
+                        return <option value={element} key={index} >{element}</option>
                     })}
                 </select>           
                 <form id="width">WIDTH
@@ -158,7 +164,7 @@ class Imglist extends React.Component {
                 </form>
                 <select id="bgtype-list" onChange={this.bgtypeSelect}>
                     {this.bgtypes.map((element, index) => { 
-                      return <option value={element} key={index} >{element}</option>
+                        return <option value={element} key={index} >{element}</option>
                     })}
                 </select>
                 <form id="bgalpha">BG ALPHA                    
@@ -171,4 +177,4 @@ class Imglist extends React.Component {
         )}
 }
 
-export default Imglist
+export default Imgcrusher
