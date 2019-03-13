@@ -62,11 +62,14 @@ class Imgcrusher extends React.Component {
         this.qualityString = 'quality='
         this.qualityQS = ''
         this.bgalphaString = 'bgalpha='
-        this.bgalphaQS = ''        
+        this.bgalphaQS = ''
+        this.downloadFormat = ['Choose File Format', 'auto', 'jpeg', 'webp', 'png', 'gif']
+        this.downloadFormatString = 'format='
+        this.downloadFormatQS = ''        
     }
 
     imgCrusher = () => { 
-        const uncleanQS = this.methodQS + this.widthQS + this.heightQS + this.qualityQS + this.bgcolorQS + this.bgtypeQS + this.bgalphaQS
+        const uncleanQS = this.methodQS + this.widthQS + this.heightQS + this.qualityQS + this.bgcolorQS + this.bgtypeQS + this.bgalphaQS + this.downloadFormatQS
         this.queryString = uncleanQS.slice(0, -1)    
         this.imgURL = this.baseURL + this.queryString
         this.setState({url: this.imgURL})
@@ -151,6 +154,19 @@ class Imgcrusher extends React.Component {
         event.preventDefault()
     }
 
+    downloadFormatChange = (event) => {
+        const dlformat = this.downloadFormat.find(d => d === event.target.value)
+        this.downloadFormatQScalculator(dlformat)
+        this.imgCrusher()
+    }
+
+    downloadFormatQScalculator = (dlf) => {
+        if (dlf === 'Choose File Format')
+            this.downloadFormatQS = ''
+        else
+            this.downloadFormatQS = this.urlprefix + this.downloadFormatString + dlf + "&"
+    }
+
     render() {
         return (
             <div>
@@ -187,6 +203,11 @@ class Imgcrusher extends React.Component {
                 <form id="bgalpha">BG ALPHA                    
                     <input type="range" min="0" max="100" onChange={this.bgalphaChange} value={this.state.bgalpha} id="bgalphaSlider" />
                 </form>
+                <select id="downloadFormat-list" onChange={this.downloadFormatChange}>
+                    {this.downloadFormat.map((element, index) => { 
+                        return <option value={element} key={index} >{element}</option>
+                    })}
+                </select>
                 <div id="qsholder">
                     <pre>?{this.queryString}</pre> 
                 </div>                                         
