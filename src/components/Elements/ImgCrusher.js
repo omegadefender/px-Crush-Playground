@@ -76,7 +76,7 @@ class Imgcrusher extends React.Component {
     }
 
     imgSelector = (event) => {
-        this.queryString = ''  
+        this.queryString = ''
         const imgname = event.target.value
         this.baseURL = images.find(x => x.name === imgname).url + "?"
         this.setState({url: this.baseURL, name: imgname})
@@ -106,17 +106,15 @@ class Imgcrusher extends React.Component {
 
     heightChange = (event) => {
         this.setState({height: event.target.value})
-        this.heightQS = this.urlprefix + this.heightString + this.state.height + "&"
+        this.heightQS = this.urlprefix + this.heightString + event.target.value + "&"
         this.imgCrusher()
-        this.setState({url: this.imgURL })
         event.preventDefault()
     }
 
     qualityChange = (event) => {
         this.setState({quality: event.target.value})
-        this.qualityQS = this.urlprefix + this.qualityString + this.state.quality + "&"
+        this.qualityQS = this.urlprefix + this.qualityString + event.target.value + "&"
         this.imgCrusher()
-        this.setState({url: this.imgURL })
         event.preventDefault()
     }    
 
@@ -149,7 +147,7 @@ class Imgcrusher extends React.Component {
 
     bgalphaChange = (event) => {
         this.setState({bgalpha: event.target.value})
-        this.bgalphaQS = this.urlprefix + this.bgalphaString + this.state.bgalpha + "&"
+        this.bgalphaQS = this.urlprefix + this.bgalphaString + event.target.value + "&"
         this.imgCrusher()
         event.preventDefault()
     }
@@ -182,13 +180,13 @@ class Imgcrusher extends React.Component {
                     })}
                 </select>           
                 <form id="width">WIDTH
-                    <input type="range" min="10" max="1500" onChange={this.widthChange} value={this.state.width} id="widthSlider" />
+                    <input id="widthSlider" type="range" min="16" max="4000" step="1" onChange={this.widthChange} value={this.state.width}/>
                 </form>
                 <form id="height">HEIGHT
-                    <input type="range" min="10" max="1500" onChange={this.heightChange} value={this.state.height} id="heightSlider" />
+                    <input id="heightSlider" type="range" min="16" max="4000" step="1" onChange={this.heightChange} value={this.state.height}/>
                 </form>
                 <form id="quality">QUALITY                    
-                    <input type="range" min="49" max="91" onChange={this.qualityChange} value={this.state.quality} id="qualitySlider" />
+                    <input id="qualitySlider" type="range" min="50" max="90" step="1" onChange={this.qualityChange} value={this.state.quality}/>
                 </form>
                 <select id="bgcolor-list" onChange={this.bgcolorChange} >
                     {this.bgcolors.map((element, index) => {
@@ -201,7 +199,7 @@ class Imgcrusher extends React.Component {
                     })}
                 </select>
                 <form id="bgalpha">BG ALPHA                    
-                    <input type="range" min="0" max="100" onChange={this.bgalphaChange} value={this.state.bgalpha} id="bgalphaSlider" />
+                    <input id="bgalphaSlider" type="range" min="0" max="100" step="1" onChange={this.bgalphaChange} value={this.state.bgalpha}  />
                 </form>
                 <select id="downloadFormat-list" onChange={this.downloadFormatChange}>
                     {this.downloadFormat.map((element, index) => { 
