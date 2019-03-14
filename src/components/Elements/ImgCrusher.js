@@ -77,6 +77,18 @@ class Imgcrusher extends React.Component {
 
     imgSelector = (event) => {
         this.queryString = ''
+        this.methodQS = ''
+        this.widthQS = ''
+        this.state.width = ''
+        this.heightQS = ''
+        this.state.height = ''
+        this.qualityQS = ''
+        this.state.quality = ''
+        this.bgtypeQS = ''
+        this.bgcolorQS = ''
+        this.bgalphaQS = ''
+        this.state.bgalpha = ''
+        this.downloadFormatQS = ''
         const imgname = event.target.value
         this.baseURL = images.find(x => x.name === imgname).url + "?"
         this.setState({url: this.baseURL, name: imgname})
@@ -169,43 +181,45 @@ class Imgcrusher extends React.Component {
         return (
             <div>
                 <img src={this.state.url} alt={this.state.name}></img>
-                <select id="image-list" onChange={this.imgSelector}>
-                    {images.map((element, index) => { 
-                        return <option value={element.name} key={index} >{element.name}</option>
-                    })}
-                </select>
-                <select id="methods-list" onChange={this.methodSelect}>
-                    {this.methods.map((element, index) => { 
-                        return <option value={element} key={index} >{element}</option>
-                    })}
-                </select>           
-                <form id="width">WIDTH
-                    <input id="widthSlider" type="range" min="16" max="4000" step="1" onChange={this.widthChange} value={this.state.width}/>
-                </form>
-                <form id="height">HEIGHT
-                    <input id="heightSlider" type="range" min="16" max="4000" step="1" onChange={this.heightChange} value={this.state.height}/>
-                </form>
-                <form id="quality">QUALITY                    
-                    <input id="qualitySlider" type="range" min="50" max="90" step="1" onChange={this.qualityChange} value={this.state.quality}/>
-                </form>
-                <select id="bgcolor-list" onChange={this.bgcolorChange} >
-                    {this.bgcolors.map((element, index) => {
-                        return <option value={element.name} key={index} >{element.name}</option>
-                    })}
-                </select>
-                <select id="bgtype-list" onChange={this.bgtypeSelect}>
-                    {this.bgtypes.map((element, index) => { 
-                        return <option value={element} key={index} >{element}</option>
-                    })}
-                </select>
-                <form id="bgalpha">BG ALPHA                    
-                    <input id="bgalphaSlider" type="range" min="0" max="100" step="1" onChange={this.bgalphaChange} value={this.state.bgalpha}  />
-                </form>
-                <select id="downloadFormat-list" onChange={this.downloadFormatChange}>
-                    {this.downloadFormat.map((element, index) => { 
-                        return <option value={element} key={index} >{element}</option>
-                    })}
-                </select>
+                <div id="toolbar">                
+                    <select id="image-list" onChange={this.imgSelector}>
+                        {images.map((element, index) => { 
+                            return <option value={element.name} key={index} >{element.name}</option>
+                        })}
+                    </select>
+                    <select id="methods-list" onChange={this.methodSelect}>
+                        {this.methods.map((element, index) => { 
+                            return <option value={element} key={index} >{element}</option>
+                        })}
+                    </select>           
+                    <form id="width">WIDTH
+                        <input id="widthSlider" type="range" min="16" max="4000" step="1" onChange={this.widthChange} value={this.state.width}/>
+                    </form>
+                    <form id="height">HEIGHT
+                        <input id="heightSlider" type="range" min="16" max="4000" step="1" onChange={this.heightChange} value={this.state.height}/>
+                    </form>
+                    <form id="quality">QUALITY                    
+                        <input id="qualitySlider" type="range" min="50" max="90" step="1" onChange={this.qualityChange} value={this.state.quality}/>
+                    </form>
+                    <select id="bgcolor-list" onChange={this.bgcolorChange} >
+                        {this.bgcolors.map((element, index) => {
+                            return <option value={element.name} key={index} >{element.name}</option>
+                        })}
+                    </select>
+                    <select id="bgtype-list" onChange={this.bgtypeSelect}>
+                        {this.bgtypes.map((element, index) => { 
+                            return <option value={element} key={index} >{element}</option>
+                        })}
+                    </select>
+                    <form id="bgalpha">BG ALPHA                    
+                        <input id="bgalphaSlider" type="range" min="0" max="100" step="1" onChange={this.bgalphaChange} value={this.state.bgalpha}  />
+                    </form>
+                    <select id="downloadFormat-list" onChange={this.downloadFormatChange}>
+                        {this.downloadFormat.map((element, index) => { 
+                            return <option value={element} key={index} >{element}</option>
+                        })}
+                    </select>
+                </div>    
                 <div id="qsholder">
                     <pre>?{this.queryString}</pre> 
                 </div>                                         

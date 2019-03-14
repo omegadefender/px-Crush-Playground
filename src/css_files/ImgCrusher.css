@@ -14,11 +14,21 @@ label {
 
 form {
     color: white;
+    text-align: center
 }
 
 input {
     width: 50px;
     font-size: small;
+}
+
+#toolbar {
+    position: absolute;
+    height: 100%;
+    width: 300px;
+    float: left;
+    background: url("../images/rainbow-bg.jpg") no-repeat center center fixed;
+    text-align: center
 }
 
 #qsholder {
@@ -38,25 +48,15 @@ pre {
 
 #image-list {
     margin-top: 50px;
-    position: absolute;
     width: 200px;
-    right: 1700px
   }
 
 #methods-list {
-    margin-top: 75px;
-    position: absolute;
     width: 200px;
-    right: 1700px
   }
 
 #width {
-    position: absolute;
-    margin: auto;
     width: 250px;
-    right: 1660px;
-    top: 100px;
-    size: 150px;
 }
 
 #widthSlider {
@@ -64,12 +64,7 @@ pre {
 }
 
 #height {
-    position: absolute;
-    margin: auto;
     width: 250px;
-    right: 1660px;
-    top: 150px;
-    size: 150px;
 }
 
 #heightSlider {
@@ -77,12 +72,7 @@ pre {
 }
 
 #quality {
-    position: absolute;
-    margin: auto;
     width: 250px;
-    right: 1660px;
-    top: 200px;
-    size: 150px;
 }
 
 #qualitySlider {
@@ -90,27 +80,15 @@ pre {
 }
 
 #bgtype-list {
-    margin-top: 250px;
-    position: absolute;
     width: 200px;
-    right: 1700px
   }
 
 #bgcolor-list {
-    margin-top: 275px;
-    position: absolute;
     width: 200px;
-    right: 1700px
 }
 
 #bgalpha {
-    position: absolute;
-    margin: auto;
     width: 250px;
-    right: 1660px;
-    top: 300px;
-    bottom: 0;
-    size: 150px;
 }
 
 #bgalphaSlider {
@@ -118,8 +96,5 @@ pre {
 }
 
 #downloadFormat-list {
-    margin-top: 360px;
-    position: absolute;
     width: 200px;
-    right: 1700px
 }
