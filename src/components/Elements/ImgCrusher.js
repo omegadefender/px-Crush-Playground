@@ -79,9 +79,9 @@ class Imgcrusher extends React.Component {
         this.queryString = ''
         this.methodQS = ''
         this.widthQS = ''
-        this.state.width = ''
+        this.state.width = '750'
         this.heightQS = ''
-        this.state.height = ''
+        this.state.height = '500'
         this.qualityQS = ''
         this.state.quality = ''
         this.bgtypeQS = ''
@@ -180,7 +180,9 @@ class Imgcrusher extends React.Component {
     render() {
         return (
             <div>
-                <img src={this.state.url} alt={this.state.name}></img>
+                <div id="image-container">
+                   <img src={this.state.url} alt={this.state.name}></img>                                    
+                </div>                
                 <div id="toolbar">                
                     <select id="image-list" onChange={this.imgSelector}>
                         {images.map((element, index) => { 

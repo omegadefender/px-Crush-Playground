@@ -1,11 +1,33 @@
+#image-container {
+    position: relative;
+    height: 937px;
+    width: 1620px;
+    float: right;
+    background-color: whitesmoke;
+    text-align: center;
+    }
+
 img {
-    position: absolute;
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
     margin: auto;
-    left: 0; 
-    right: 0;
-    top: 0;
-    bottom: 0; 
 }
+
+#toolbar {
+    position: absolute;
+    height: 100em;
+    width: 300px;
+    float: left;
+    background: url("../images/rainbow-bg.jpg") no-repeat center center fixed;
+    text-align: center
+}   
 
 label {
     color: white;
@@ -14,21 +36,12 @@ label {
 
 form {
     color: white;
-    text-align: center
+    text-align: center;
 }
 
 input {
     width: 50px;
     font-size: small;
-}
-
-#toolbar {
-    position: absolute;
-    height: 100%;
-    width: 300px;
-    float: left;
-    background: url("../images/rainbow-bg.jpg") no-repeat center center fixed;
-    text-align: center
 }
 
 #qsholder {
