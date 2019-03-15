@@ -1,30 +1,37 @@
 #image-container {
-    position: relative;
-    height: 937px;
-    width: 1620px;
-    float: right;
+    height: 100%;
     background-color: whitesmoke;
     text-align: center;
-    }
+    vertical-align: middle;
+    flex: 1;
+    overflow: scroll;
+    position: relative;
+}
 
 img {
-    max-height: 100%;  
-    max-width: 100%; 
-    width: auto;
-    height: auto;
-    position: absolute;  
-    top: 0;  
-    bottom: 0;  
-    left: 0;  
-    right: 0;  
-    margin: auto;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#playground {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#img-manipulator {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
 }
 
 #toolbar {
-    position: absolute;
-    height: 100em;
     width: 300px;
-    float: left;
     background: url("../images/rainbow-bg.jpg") no-repeat center center fixed;
     text-align: center
 }   
@@ -45,10 +52,11 @@ input {
 }
 
 #qsholder {
+    height: 60px;
     width: 100%;
+    background: black;
     text-align: center;
     margin: 0 auto;
-    position: absolute;
     bottom: 20px;
 }
 
